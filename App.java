@@ -27,11 +27,21 @@ public class App {
             }
         }
 
+        // Add button to call solveSudoku
+        JButton solveButton = new JButton("Solve");
+        solveButton.addActionListener(e -> solveSudoku());
+
         // Add components
         frame.add(sudokuPanel, BorderLayout.CENTER);
+        frame.add(solveButton, BorderLayout.SOUTH);
 
         // Making the frame visible
         frame.setVisible(true);
+    }
+
+    //Method to call upon the class with the backtracking algorithm
+    private void solveSudoku() {
+        JOptionPane.showMessageDialog(null, "Solving Sudokue...");
     }
 
 }
