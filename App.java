@@ -41,7 +41,8 @@ public class App {
 
     //Method to call upon the class with the backtracking algorithm
     private void solveSudoku() {
-        JOptionPane.showMessageDialog(null, "Solving Sudokue...");
+        JOptionPane.showMessageDialog(null, "Solving Sudoku...");
+        new Solve();
     }
 
 }
