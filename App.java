@@ -1,5 +1,7 @@
 
 import javax.swing.*;
+import javax.swing.border.Border;
+
 import java.awt.*;
 
 public class App {
@@ -19,13 +21,32 @@ public class App {
         sudokuPanel.setLayout(new GridLayout(SIZE, SIZE));
 
         // Add text fields to the grid
-        for(int i = 0; i < SIZE; i++) {
-            for(int j = 0; j < SIZE; j++) {
-                grid[i][j] = new JTextField();
-                grid[i][j].setHorizontalAlignment(JTextField.CENTER);
-                sudokuPanel.add(grid[i][j]);
-            }
+        for (int row = 0; row < SIZE; row++) {
+    for (int col = 0; col < SIZE; col++) {
+        grid[row][col] = new JTextField();
+        grid[row][col].setHorizontalAlignment(JTextField.CENTER);
+        grid[row][col].setFont(new Font("Arial", Font.BOLD, 20)); // Set a larger font
+
+        // Add borders to highlight the 3x3 subgrids
+        Border blackline = BorderFactory.createLineBorder(Color.BLACK, 1);
+        grid[row][col].setBorder(blackline);
+
+        // Highlight the borders of the 3x3 grids with thicker lines
+        if (row % 3 == 0 && col % 3 == 0) {
+            grid[row][col].setBorder(BorderFactory.createMatteBorder(3, 3, 1, 1, Color.BLACK));
+        } else if (row % 3 == 0) {
+            grid[row][col].setBorder(BorderFactory.createMatteBorder(3, 1, 1, 1, Color.BLACK));
+        } else if (col % 3 == 0) {
+            grid[row][col].setBorder(BorderFactory.createMatteBorder(1, 3, 1, 1, Color.BLACK));
+        } else {
+            grid[row][col].setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK));
         }
+
+        // Add some padding
+        grid[row][col].setMargin(new Insets(5, 5, 5, 5));
+        sudokuPanel.add(grid[row][col]);
+    }
+}
 
         // Add button to call solveSudoku
         JButton solveButton = new JButton("Solve");
